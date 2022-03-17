@@ -16,11 +16,11 @@ def team():
 
 @app.route("/about-us")
 def about():
-    return "Work in progress"
+    return render_template("about.html")
 
 @app.route("/recruitment")
 def recruitment():
-    return "Work in progress"
+    return render_template("recruit.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

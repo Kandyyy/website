@@ -1,16 +1,37 @@
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
 }
 
-.topnav {
-    overflow: hidden;
-    background-color:inherit;
-    padding-top: 10px;
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 50px;
 }
 
-.topnav a {
-    float: left;
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display:flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
     color: whitesmoke;
     text-align: center;
     padding: 14px 16px;
@@ -21,13 +42,7 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
-.topnav a.nav-img{
-  color:whitesmoke;
-  opacity: 1;
-}
-
-
-.topnav a:hover{
+.navbar-links li a:hover {
     -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
@@ -35,17 +50,59 @@ body {
     color:whitesmoke
 }
 
-.topnav a.active {
-    background-color: #04AA6D;
-    color: white;
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
 }
 
-.topnav-right {
-    float: right;
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
 }
 
 .footer-basic {
-    padding: 40px 0;
+    padding: 40px;
     background-color: black;
     color: #4b4c4d;
     position:relative;

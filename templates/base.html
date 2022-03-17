@@ -15,16 +15,23 @@
 </head>
 
 <body style="background-color: black;">
-
-    <div class="topnav">
-        <a href="/" class="nav-img"><img src="/static/logo.jpg" alt="logo" height="200" width="200"></a>
-        <div class="topnav-right">
-            <a href="/events">Events</a>
-            <a href="/about-us">About us</a>
-            <a href="/team">Team</a>
-            <a href="/recruitment">Recruitment</a>
+    <nav class="navbar">
+        <a href="/"><img src="/static/logo.jpg" alt="logo" height="140px"></a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/about-us">About us</a></li>
+                <li><a href="/team">Team</a></li>
+                <li><a href="/recruitment">Recruitment</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
+    <script src="/static/javascript/hamburger.js"></script>
     {% block content %}
 
       {% endblock content %}
