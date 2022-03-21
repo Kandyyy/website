@@ -18,9 +18,6 @@ def team():
 def about():
     return render_template("about.html")
 
-@app.route("/recruitment")
-def recruitment():
-    return render_template("recruit.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

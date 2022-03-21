@@ -1,0 +1,11 @@
+.EcellInfo{
+    border-radius: 120px;
+    background-color:rgba(68, 66, 66, 0.699);
+    padding: 50px;
+    width:95%;
+    color: whitesmoke;
+}
+
+.EcellInfoSub {
+    padding-top: 70px;
+}
