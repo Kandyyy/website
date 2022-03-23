@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Enter your info: </h2>
-<form method="POST">
-    {{form.hidden_tag()}}
-    {{form.fname.label}} {{form.fname()}}
-    {{form.lname.label}} {{form.lname()}}
-    {{form.email.label}} {{form.email()}}
-    {{form.ph_number.label}} {{form.ph_number()}}
-    {{form.submit()}}
-</form>
+<div class="outer-form">
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <div style="color: whitesmoke;"><h1 class="display-4">Register Now</h1></div>
+                <div class="card">
+                    <h5 class="text-center mb-4">Fill the form to register</h5>
+                    <form method="POST" class="form-card">
+                        <div class="row justify-content-between text-left">
+                            {{form.hidden_tag()}}
+                            <div class="form-group col-sm-6 flex-column d-flex">{{form.fname.label(class_="form-control-label px-3")}} {{form.fname(placeholder="First Name")}}</div>
+                            <div class="form-group col-sm-6 flex-column d-flex">{{form.lname.label(class_="form-control-label px-3")}} {{form.lname(placeholder="Last Name")}}</div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex">{{form.email.label(class_="form-control-label px-3")}} {{form.email(placeholder="Email")}}</div>
+                            <div class="form-group col-sm-6 flex-column d-flex">{{form.ph_number.label(class_="form-control-label px-3")}} {{form.ph_number()}}</div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <center>
+                                <div class="form-group col-sm-6">{{form.submit(class_="btn-block btn-primary")}}</div>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

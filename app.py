@@ -18,8 +18,8 @@ class UserInfo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     fname = db.Column(db.String(40))
     lname = db.Column(db.String(40))
-    email = db.Column(db.String(120))
-    ph_number = db.Column(db.Integer)
+    email = db.Column(db.String(120), unique = True)
+    ph_number = db.Column(db.String(10), unique = True)
 
     def __init__(self, fname, lname, email, ph_number):
         self.fname = fname
@@ -45,7 +45,7 @@ def events():
         new_user = UserInfo(fname, lname, email, ph_number)
         db.session.add(new_user)
         db.session.commit()
-        flash(f"User registered id: {new_user.id}")
+        flash(f"Registration Successful.{new_user.id}")
         return redirect(url_for("home"))
     return render_template("events.html", form=form)
 

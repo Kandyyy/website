@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+
+    {% for msg in get_flashed_messages() %}
+      <div class="alert alert-light alert-dismissible fade show" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+              
+          </button>
+          {{msg}}
+        </div>
+    {% endfor %}
+
+    
 <div style="color:white">
     <div style="font-family: Azeret Mono; padding-top: 80px;">
         <center>
@@ -9,6 +20,5 @@
             </div><br><br><br><br>
         </center>
     </div>
-
 </div>
 {% endblock content %}
