@@ -1,0 +1,16 @@
+.mobile{
+    padding-bottom: 10px;
+    text-align:center;
+}
+
+.desktop{
+    padding-bottom: 10px;
+    text-align:center;
+}
+
+.mobile{display:none}
+@media (max-width: 800px) {
+    .mobile { display: block }
+    .desktop { display: none }
+}
+

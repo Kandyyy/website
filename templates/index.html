@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    {% for msg in get_flashed_messages() %}
-      <div class="alert alert-light alert-dismissible fade show" role="alert">
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-              
-          </button>
-          {{msg}}
-        </div>
-    {% endfor %}
+{% for msg in get_flashed_messages() %}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
 
-    
+    </button>
+    {{msg}}
+</div>
+{% endfor %}
+
+
 <div style="color:white">
     <div style="font-family: Azeret Mono; padding: 80px; padding-bottom: 120px;">
         <center>
-            <div style="border-radius: 120px; background-color:rgba(68, 66, 66, 0.699);padding: 50px;width:95%;">
-                <h1 style="padding-bottom: 10px;text-align:center;">ENTREPRENEURSHIP CELL MIT-WPU</h1>
-                <h2 style="text-align: center;">IDEATE.INNOVATE.ACCUTATE.</h2>
+            <div style="background-color:rgba(68, 66, 66, 0.699); padding: 50px; width:80%; border-radius:120px;">
+                <h1 class="desktop">ENTREPRENEURSHIP CELL MIT-WPU</h1>
+                <h1 class="mobile">E-CELL</h1>
+                <h2 style="text-align: center;">IDEATE IMPROVISE IMPLEMENT</h2>
             </div>
+
         </center>
     </div>
 </div>
