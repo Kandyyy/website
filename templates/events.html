@@ -8,6 +8,47 @@
                 <div style="color: whitesmoke;"><h1 class="display-4">Register Now</h1></div>
                 <div class="card">
                     <h5 class="text-center mb-4">Fill the form to register</h5>
+                    {% if form.fname.errors%}
+                            {% for error in form.fname.errors %}
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                
+                                    </button>
+                                    {{error}}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                    {% if form.lname.errors%}
+                            {% for error in form.lname.errors %}
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                
+                                    </button>
+                                    {{error}}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                    {% if form.email.errors%}
+                            {% for error in form.email.errors %}
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                
+                                    </button>
+                                    {{error}}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                    {% if form.ph_number.errors%}
+                            {% for error in form.ph_number.errors %}
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                
+                                    </button>
+                                    {{error}}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                    
                     <form method="POST" class="form-card">
                         <div class="row justify-content-between text-left">
                             {{form.hidden_tag()}}
@@ -17,7 +58,7 @@
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">{{form.email.label(class_="form-control-label px-3")}} {{form.email(placeholder="Email")}}</div>
                             <div class="form-group col-sm-6 flex-column d-flex">{{form.ph_number.label(class_="form-control-label px-3")}} {{form.ph_number()}}</div>
-                        </div>
+                        </div><br>
                         <div class="row justify-content-end">
                             <center>
                                 <div class="form-group col-sm-6">{{form.submit(class_="btn-block btn-primary")}}</div>

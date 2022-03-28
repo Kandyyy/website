@@ -1,7 +1,10 @@
 from flask import Flask, redirect, render_template, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
-from forms import UserForm
+from wtforms.validators import ValidationError
+from flask_wtf import FlaskForm
+from wtforms import StringField, IntegerField, SubmitField, validators
+from wtforms.validators import InputRequired,Email, Length, ValidationError 
 
 app = Flask(__name__)
 
@@ -11,15 +14,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "da
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-###########################      Forms    #############################
-app.config["SECRET_KEY"] = "sekretkeylol"
-
 class UserInfo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     fname = db.Column(db.String(40))
     lname = db.Column(db.String(40))
-    email = db.Column(db.String(120), unique = True)
-    ph_number = db.Column(db.String(10), unique = True)
+    email = db.Column(db.String(120))
+    ph_number = db.Column(db.String(10))
 
     def __init__(self, fname, lname, email, ph_number):
         self.fname = fname
@@ -29,6 +29,26 @@ class UserInfo(db.Model):
     
     def __repr__(self):
         return f"First: {self.fname}\nLast:{self.lname}\nEmail:{self.email}\nPhone:{self.ph_number}"
+
+###########################      Forms    #############################
+app.config["SECRET_KEY"] = "sekretkeylol"
+class Unique(object):
+    def __init__(self, model, field, message):
+        self.model = model
+        self.field = field
+        self.message = message
+
+    def __call__(self, form, field):         
+        check = self.model.query.filter(self.field == field.data).first()
+        if check:
+            raise ValidationError(self.message)
+
+class UserForm(FlaskForm):
+    fname = StringField("First Name",validators=[validators.InputRequired("Please enter your first name"), validators.Length(min=1, max=40, message="The name is too long")])
+    lname = StringField("Last Name",validators=[validators.InputRequired("Please enter your last name"), validators.Length(min=1, max=40, message="The last name is too long")])
+    email = StringField("E-mail",validators=[validators.InputRequired("Please enter your E-mail address"), validators.Email("Enter valid E-mail address"), Unique(UserInfo, UserInfo.email, message="This email has been used for registration.")])
+    ph_number = StringField("Phone Number",validators=[validators.InputRequired("Please enter your phone number"), validators.Length(min=10, max=10), Unique(UserInfo, UserInfo.ph_number, message="This phone number has been used for registration.")])
+    submit = SubmitField("Submit")
 
 @app.route("/")
 def home():
