@@ -5,8 +5,19 @@ from wtforms.validators import ValidationError
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, validators
 from wtforms.validators import InputRequired,Email, Length, ValidationError 
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'PenguinSor987@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Penguin_Sor123'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+mail.init_app(app)
+
+
 
 ###########################     DATABASE    ###########################
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -63,8 +74,13 @@ def events():
         email = form.email.data
         ph_number = form.ph_number.data
         new_user = UserInfo(fname, lname, email, ph_number)
-        db.session.add(new_user)
-        db.session.commit()
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+        except:
+            return "An error occured"
+        msg = Message(subject="Registration Successful.", recipients=[new_user.email], body=f"You have been successfully registered for the event.\nUser id: {new_user.id}", sender="tungaresamit@gmail.com")
+        mail.send(msg)
         flash(f"Registration Successful.{new_user.id}")
         return redirect(url_for("home"))
     return render_template("events.html", form=form)
