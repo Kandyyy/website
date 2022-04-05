@@ -2,4 +2,4 @@
 
 ## MIT-WPU E-cell website
 
-##P roject Scrapped
+## Project Scrapped
